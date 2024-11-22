@@ -101,7 +101,7 @@ const NotesList = () => {
         const parseNotes = JSON.parse(localNotes);
         setNotesList(parseNotes);
         setVisibleData(parseNotes.slice(0, 5));
-    }, [isDialogOpen]);
+    }, [isDialogOpen, isDeleteDialogOpen]);
 
     return (
         <>
