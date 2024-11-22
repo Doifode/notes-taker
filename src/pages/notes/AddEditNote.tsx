@@ -6,6 +6,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { INote } from "../../utils/types";
 import { Dispatch, SetStateAction, useEffect } from "react";
+import { toast } from "react-toastify";
 
 const validationSchema = Yup.object({
     title: Yup.string()
@@ -29,7 +30,6 @@ const AddEditNote: React.FC<AddEditNoteProp> = ({ handleClose, initialValues, se
     });
 
     const handleSubmit = (values: INote) => {
-
         const localNotes = localStorage.getItem("notes") || "[]"
         const notesList: INote[] = JSON.parse(localNotes)
         let newNotesArray: INote[] = []
@@ -46,6 +46,7 @@ const AddEditNote: React.FC<AddEditNoteProp> = ({ handleClose, initialValues, se
         localStorage.setItem("notes", JSON.stringify(newNotesArray))
         setNotesList(newNotesArray)
         handleClose()
+        toast.success(initialValues.id ? "Note updated successfully." : "Note added successfully.")
     }
 
     useEffect(() => {
@@ -62,7 +63,7 @@ const AddEditNote: React.FC<AddEditNoteProp> = ({ handleClose, initialValues, se
                     id="title"
                     name="title"
                     label="Title"
-                    value={formik.values.title}
+                    value={formik.values.title.trimStart()}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     error={formik.touched.title && Boolean(formik.errors.title)}
@@ -75,7 +76,7 @@ const AddEditNote: React.FC<AddEditNoteProp> = ({ handleClose, initialValues, se
                     id="note"
                     name="note"
                     label="Note"
-                    value={formik.values.note}
+                    value={formik.values.note.trimStart()}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     error={formik.touched.note && Boolean(formik.errors.note)}

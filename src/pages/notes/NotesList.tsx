@@ -10,6 +10,7 @@ import AddEditNote from "./AddEditNote";
 import InfiniteScroll from "react-infinite-scroll-component";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
+import { toast } from "react-toastify";
 
 const NotesList = () => {
 
@@ -49,6 +50,7 @@ const NotesList = () => {
         setNotesList(filteredNote);
         localStorage.setItem("notes", JSON.stringify(filteredNote));
         handleDeleteDialogOpenClose();
+        toast.error("Note deleted successfully.")
     };
 
     const handleNotesList = (): INote[] => {
