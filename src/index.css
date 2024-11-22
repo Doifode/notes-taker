@@ -1,0 +1,30 @@
+* {
+    padding: 0%;
+    margin: 0%;
+}
+
+/* Card Component CSS */
+.card {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #e0e0e0;
+    /* Light gray border */
+    border-radius: 8px;
+    /* Rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    /* Subtle shadow */
+    background-color: #fff;
+    /* White background */
+    overflow: hidden;
+    /* Clip content to rounded corners */
+    transition: transform 0.2s, box-shadow 0.2s;
+    /* Smooth hover effects */
+    margin: 2px;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    /* Slight lift on hover */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    /* Stronger shadow on hover */
+}
